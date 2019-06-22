@@ -5,6 +5,8 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -17,13 +19,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.JToggleButton;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import java.awt.event.ItemListener;
-import java.awt.event.ItemEvent;
-import javax.swing.JToggleButton;
+import javax.swing.JFormattedTextField;
 
 /**
  * Sample_OracleApp
@@ -76,7 +78,7 @@ public class Sample_OracleApp extends JFrame {
 	// ----- JRadioButton -----
 
 	private JLabel lbl_JRadioButton = null;
-	private ButtonGroup btnGroup = null;	
+	private ButtonGroup btnGroup = null;
 	private JRadioButton rdbtnRadioButton_1 = null;
 	private JRadioButton rdbtnRadioButton_2 = null;
 	private JRadioButton rdbtnRadioButton_3 = null;
@@ -91,18 +93,28 @@ public class Sample_OracleApp extends JFrame {
 	private GridBagConstraints gbc_lbl_JRadioButtonValue_1 = null;
 	private GridBagConstraints gbc_lbl_JRadioButtonValue_2 = null;
 	private GridBagConstraints gbc_lbl_JRadioButtonValue_3 = null;
-	
-	//----- JToggleButton -----
-	
+
+	// ----- JToggleButton -----
+
 	private JLabel lbl_Jtogglebutton = null;
 	private JToggleButton tglbtnJToggleButton = null;
 	private JLabel lbl_JToggleButtonValue = null;
-	
+
 	private GridBagConstraints gbc_lbl_Jtogglebutton = null;
 	private GridBagConstraints gbc_tglbtnJToggleButton = null;
 	private GridBagConstraints gbc_lbl_JToggleButtonValue = null;
 	
 	
+	//----- JTextArea -----
+	
+	private JLabel lblJTextArea = null;
+	private JTextArea textArea = null;
+	private JLabel lblJTextAreaValue = null;
+	
+	private GridBagConstraints gbc_lblJTextArea = null;
+	private GridBagConstraints gbc_textArea = null;
+	private GridBagConstraints gbc_lblJTextAreaValue = null;
+
 	/**
 	 * Sample_OracleApp
 	 * 
@@ -128,7 +140,8 @@ public class Sample_OracleApp extends JFrame {
 				new TitledBorder(null, "Swing Components", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 
 		gbl_panel_SwingComponents = new GridBagLayout();
-		gbl_panel_SwingComponents.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0 };
+		gbl_panel_SwingComponents.rowWeights = new double[] { 0.0, 0.0, 1.0, 0.0, 0.0 };
+		gbl_panel_SwingComponents.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0 };
 		panel_SwingComponents_1.setLayout(gbl_panel_SwingComponents);
 
 		// ======= Prepare Swing Components =======
@@ -138,6 +151,7 @@ public class Sample_OracleApp extends JFrame {
 		setJCheckBoxComponents();
 		setJRadioButtonComponents();
 		setJToggleButtonComponents();
+		setJTextAreaComponents();
 
 		// ======= Prepare AWT Components =======
 
@@ -159,23 +173,65 @@ public class Sample_OracleApp extends JFrame {
 		this.setVisible(true);
 	}
 
-	
+	/**
+	 * setJTextAreaComponents
+	 * 
+	 */
+	private void setJTextAreaComponents() {
+
+		
+		// ----- 3rd Line / 4th Row -----
+
+		lblJTextArea = new JLabel("JTextArea");
+		gbc_lblJTextArea = new GridBagConstraints();
+		gbc_lblJTextArea.insets = new Insets(0, 0, 5, 5);
+		gbc_lblJTextArea.gridx = 6;
+		gbc_lblJTextArea.gridy = 2;
+		panel_SwingComponents_1.add(lblJTextArea, gbc_lblJTextArea);
+
+		
+		// ----- 3rd Line / 5th Row -----
+
+		textArea = new JTextArea();		
+		textArea.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				String value = textArea.getText();
+				lblJTextAreaValue.setText(value);
+			}
+		});
+		gbc_textArea = new GridBagConstraints();
+		gbc_textArea.insets = new Insets(0, 0, 5, 5);
+		gbc_textArea.fill = GridBagConstraints.BOTH;
+		gbc_textArea.gridx = 7;
+		gbc_textArea.gridy = 2;
+		panel_SwingComponents_1.add(textArea, gbc_textArea);
+
+		// ----- 3rd Line / 6th Row -----
+
+		lblJTextAreaValue = new JLabel("");
+		gbc_lblJTextAreaValue = new GridBagConstraints();
+		gbc_lblJTextAreaValue.insets = new Insets(0, 0, 5, 5);
+		gbc_lblJTextAreaValue.gridx = 8;
+		gbc_lblJTextAreaValue.gridy = 2;
+		panel_SwingComponents_1.add(lblJTextAreaValue, gbc_lblJTextAreaValue);
+	}
+
 	/**
 	 * setJToggleButtonComponents
 	 * 
 	 */
 	private void setJToggleButtonComponents() {
 
-		
 		// ----- 2nd Line / 4th Row -----
-		
+
 		lbl_Jtogglebutton = new JLabel("JToggleButton");
 		gbc_lbl_Jtogglebutton = new GridBagConstraints();
 		gbc_lbl_Jtogglebutton.insets = new Insets(0, 0, 5, 5);
 		gbc_lbl_Jtogglebutton.gridx = 6;
 		gbc_lbl_Jtogglebutton.gridy = 1;
 		panel_SwingComponents_1.add(lbl_Jtogglebutton, gbc_lbl_Jtogglebutton);
-		
+
 		// ----- 2nd Line / 5th Row -----
 		tglbtnJToggleButton = new JToggleButton("JToggleButton");
 		gbc_tglbtnJToggleButton = new GridBagConstraints();
@@ -183,34 +239,31 @@ public class Sample_OracleApp extends JFrame {
 		gbc_tglbtnJToggleButton.gridx = 7;
 		gbc_tglbtnJToggleButton.gridy = 1;
 		panel_SwingComponents_1.add(tglbtnJToggleButton, gbc_tglbtnJToggleButton);
-		
+
 		// ----- 2nd Line / 6th Row -----
 		lbl_JToggleButtonValue = new JLabel("");
 		gbc_lbl_JToggleButtonValue = new GridBagConstraints();
-		gbc_lbl_JToggleButtonValue.insets = new Insets(0, 0, 5, 5);
+		gbc_lbl_JToggleButtonValue.insets = new Insets(0, 0, 5, 0);
 		gbc_lbl_JToggleButtonValue.gridx = 9;
 		gbc_lbl_JToggleButtonValue.gridy = 1;
 		panel_SwingComponents_1.add(lbl_JToggleButtonValue, gbc_lbl_JToggleButtonValue);
 
-		
 		tglbtnJToggleButton.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				Boolean value = tglbtnJToggleButton.isSelected();
 				lbl_JToggleButtonValue.setText(String.valueOf(value));
 			}
 		});
-		
+
 	}
-	
-	
+
 	/**
 	 * setJRadioButtonComponents
 	 * 
 	 */
 	private void setJRadioButtonComponents() {
-		
+
 		btnGroup = new ButtonGroup();
-		
 
 		// ----- 3rd-5th Line / 1st Row -----
 
@@ -238,6 +291,29 @@ public class Sample_OracleApp extends JFrame {
 		gbc_rdbtnRadioButton_2.gridx = 1;
 		gbc_rdbtnRadioButton_2.gridy = 3;
 		panel_SwingComponents_1.add(rdbtnRadioButton_2, gbc_rdbtnRadioButton_2);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+		gbc_lblNewLabel.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel.gridx = 6;
+		gbc_lblNewLabel.gridy = 3;
+		panel_SwingComponents_1.add(lblNewLabel, gbc_lblNewLabel);
+		
+		JFormattedTextField formattedTextField = new JFormattedTextField();
+		GridBagConstraints gbc_formattedTextField = new GridBagConstraints();
+		gbc_formattedTextField.insets = new Insets(0, 0, 5, 5);
+		gbc_formattedTextField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_formattedTextField.gridx = 7;
+		gbc_formattedTextField.gridy = 3;
+		panel_SwingComponents_1.add(formattedTextField, gbc_formattedTextField);
+		
+		JLabel lblNewLabel_1 = new JLabel("New label");
+		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
+		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_1.gridx = 8;
+		gbc_lblNewLabel_1.gridy = 3;
+		panel_SwingComponents_1.add(lblNewLabel_1, gbc_lblNewLabel_1);
 
 		rdbtnRadioButton_3 = new JRadioButton("JRadioButton#3");
 		btnGroup.add(rdbtnRadioButton_3);
@@ -338,7 +414,7 @@ public class Sample_OracleApp extends JFrame {
 	 * 
 	 */
 	private void setJTextFieldComponents() {
-		
+
 		// ----- 1st Line / 4th Row -----
 
 		lbl_JTextField = new JLabel("JTextField");
