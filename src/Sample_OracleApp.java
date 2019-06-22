@@ -1,15 +1,24 @@
+import java.awt.Button;
+import java.awt.Checkbox;
+import java.awt.Choice;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.Label;
+import java.awt.List;
+import java.awt.Scrollbar;
+import java.awt.TextArea;
+import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
@@ -25,16 +34,15 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
+import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
-import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import java.awt.BorderLayout;
 
 /**
  * Sample_OracleApp
@@ -51,8 +59,9 @@ public class Sample_OracleApp extends JFrame {
 	// ----- Container -----
 
 	private Container con = null;
-	private JScrollPane scrollPane = null;
 	private JPanel panel = null;
+	private JTabbedPane tabbedPane = null;
+	private JScrollPane scrollPane = null;
 	private JPanel panel_SwingComponents = null;
 	private JPanel panel_AwtComponents = null;
 	private JTable table;
@@ -554,17 +563,11 @@ public class Sample_OracleApp extends JFrame {
 	private void setJTableComponents() {
 		int lineNum = 6;
 
-		Object[][] arrayData = {
-				{"1", "a", "aaa"},
-				{"2", "b", "bbb"},
-				{"3", "c", "ccc"},
-				{"4", "d", "ddd"},
-				{"5", "e", "eee"}
-		};
-		
-		String[] arrayColumn = {"Col.A", "Col.B", "Col.C"};
-		
-		
+		Object[][] arrayData = { { "1", "a", "aaa" }, { "2", "b", "bbb" }, { "3", "c", "ccc" }, { "4", "d", "ddd" },
+				{ "5", "e", "eee" } };
+
+		String[] arrayColumn = { "Col.A", "Col.B", "Col.C" };
+
 		// ----- 7th Line / 1st Row -----
 		JLabel lblJTable = new JLabel("JTable");
 		GridBagConstraints gbc_lblJTable = new GridBagConstraints();
@@ -575,48 +578,34 @@ public class Sample_OracleApp extends JFrame {
 
 		// ----- 7th Line / 2nd Row -----
 		table = new JTable(arrayData, arrayColumn);
-		JScrollPane sp = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		JScrollPane sp = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		JScrollBar bar = sp.getVerticalScrollBar();
-		bar.setPreferredSize(new Dimension(0,40));
-/*		JPanel p = new JPanel();
-		p.add(table.getTableHeader());
-		p.add(table);
-		sp.setViewportView(p);
-*/		
+		bar.setPreferredSize(new Dimension(0, 40));
+
 		GridBagConstraints gbc_table = new GridBagConstraints();
 		gbc_table.fill = GridBagConstraints.HORIZONTAL;
 		gbc_table.insets = new Insets(0, 0, 0, 5);
 		gbc_table.gridx = rowNum[1];
-		gbc_table.gridwidth=6;
+		gbc_table.gridwidth = 6;
 		gbc_table.gridy = lineNum;
-		gbc_table.gridheight=5;
-		
+		gbc_table.gridheight = 5;
+
 		panel_SwingComponents.add(sp, gbc_table);
 	}
 
 	/**
-	 * initialize
+	 * createSwingPanel
 	 * 
 	 */
-	private void initialize() {
-		// ======= Prepare Container =======
+	private void createSwingPanel() {
 
-		// ----- Set Container -----
-
-		con = this.getContentPane();
-		scrollPane = new JScrollPane();
-		panel = new JPanel();
-		panel.setLayout(new GridLayout(2, 0));
-		panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-
-		// ----- Set Panel -----
+		// ======= Set Panel =======
 
 		panel_SwingComponents = new JPanel();
-		panel_SwingComponents.setBorder(
-				new TitledBorder(null, "Swing Components", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-
+		panel_SwingComponents.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		GridBagLayout gbl_panel_SwingComponents = new GridBagLayout();
-		gbl_panel_SwingComponents.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0};
+		gbl_panel_SwingComponents.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0 };
 		gbl_panel_SwingComponents.columnWeights = new double[] { 1.0, 1.0, 0.0, 0.5, 1.0, 1.0, 1.0, 0, 0.5 };
 		panel_SwingComponents.setLayout(gbl_panel_SwingComponents);
 
@@ -644,18 +633,327 @@ public class Sample_OracleApp extends JFrame {
 		// ----- 7th line -----
 		setJTableComponents();
 
-		// ======= Prepare AWT Components =======
+	}
+
+	/**
+	 * setButtonComponents
+	 * 
+	 */
+	private void setButtonComponents() {
+
+		int lineNum = 0;
+
+		// ----- 1st Line / 1st Row -----
+		JLabel lblButton = new JLabel("Button");
+		GridBagConstraints gbc_lblButton = new GridBagConstraints();
+		gbc_lblButton.insets = new Insets(0, 0, 5, 5);
+		gbc_lblButton.gridx = rowNum[0];
+		gbc_lblButton.gridy = lineNum;
+		panel_AwtComponents.add(lblButton, gbc_lblButton);
+
+		// ----- 1st Line / 2nd Row -----
+		Button button = new Button("Button");
+		GridBagConstraints gbc_button = new GridBagConstraints();
+		gbc_button.insets = new Insets(0, 0, 5, 5);
+		gbc_button.gridx = rowNum[1];
+		gbc_button.gridy = lineNum;
+		gbc_button.fill = GridBagConstraints.BOTH;
+		panel_AwtComponents.add(button, gbc_button);
+
+		// ----- 1st Line / 3rd Row -----
+		Label lblButtonValue = new Label("0");
+		GridBagConstraints gbc_lblButtonValue = new GridBagConstraints();
+		gbc_lblButtonValue.insets = new Insets(0, 0, 5, 5);
+		gbc_lblButtonValue.gridx = rowNum[2];
+		gbc_lblButtonValue.gridy = lineNum;
+
+		button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				int value = Integer.valueOf(lblButtonValue.getText());
+				lblButtonValue.setText(String.valueOf(value + 1));
+			}
+		});
+
+		panel_AwtComponents.add(lblButtonValue, gbc_lblButtonValue);
+	}
+
+	/**
+	 * setCheckBoxComponents
+	 * 
+	 */
+	private void setCheckBoxComponents() {
+
+		int lineNum = 0;
+
+		// ----- 1st Line / 1st Row -----
+
+		Label lblCheckBox = new Label("CheckBox");
+		GridBagConstraints gbc_lblCheckBox = new GridBagConstraints();
+		gbc_lblCheckBox.insets = new Insets(0, 0, 5, 5);
+		gbc_lblCheckBox.gridx = rowNum[3];
+		gbc_lblCheckBox.gridy = lineNum;
+		panel_AwtComponents.add(lblCheckBox, gbc_lblCheckBox);
+
+		// ----- 1st Line / 2nd Row -----
+		Checkbox checkbox = new Checkbox("CheckBox");
+		GridBagConstraints gbc_checkbox = new GridBagConstraints();
+		gbc_checkbox.insets = new Insets(0, 0, 5, 5);
+		gbc_checkbox.gridx = rowNum[4];
+		gbc_checkbox.gridy = lineNum;
+		gbc_checkbox.fill = GridBagConstraints.BOTH;
+		panel_AwtComponents.add(checkbox, gbc_checkbox);
+
+		// ----- 1st Line / 3rd Row -----
+		Label lblCheckBoxValue = new Label("false");
+		GridBagConstraints gbc_lblCheckBoxValue = new GridBagConstraints();
+		gbc_lblCheckBoxValue.insets = new Insets(0, 0, 5, 0);
+		gbc_lblCheckBoxValue.gridx = rowNum[5];
+		gbc_lblCheckBoxValue.gridy = lineNum;
+
+		checkbox.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				lblCheckBoxValue.setText(String.valueOf(checkbox.getState()));
+			}
+		});
+
+		panel_AwtComponents.add(lblCheckBoxValue, gbc_lblCheckBoxValue);
+	}
+
+	/**
+	 * setChoiceComponents
+	 * 
+	 */
+	private void setChoiceComponents() {
+
+		int lineNum = 1;
+
+		// ----- 2nd Line / 1st Row -----
+
+		Label lblChoice = new Label("Choice");
+		GridBagConstraints gbc_lblChoice = new GridBagConstraints();
+		gbc_lblChoice.insets = new Insets(0, 0, 5, 5);
+		gbc_lblChoice.gridx = rowNum[0];
+		gbc_lblChoice.gridy = lineNum;
+		panel_AwtComponents.add(lblChoice, gbc_lblChoice);
+
+		// ----- 2nd Line / 2nd Row -----
+		Choice choice = new Choice();
+		choice.addItem("a");
+		choice.addItem("b");
+		choice.addItem("c");
+		choice.addItem("d");
+		choice.addItem("e");
+
+		GridBagConstraints gbc_choice = new GridBagConstraints();
+		gbc_choice.insets = new Insets(0, 0, 5, 5);
+		gbc_choice.gridx = rowNum[1];
+		gbc_choice.gridy = lineNum;
+		gbc_choice.fill = GridBagConstraints.BOTH;
+		panel_AwtComponents.add(choice, gbc_choice);
+
+		// ----- 2nd Line / 3rd Row -----
+		Label lblChoiceValue = new Label("");
+		GridBagConstraints gbc_lblChoiceValue = new GridBagConstraints();
+		gbc_lblChoiceValue.insets = new Insets(0, 0, 5, 5);
+		gbc_lblChoiceValue.gridx = rowNum[2];
+		gbc_lblChoiceValue.gridy = lineNum;
+
+		choice.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				lblChoiceValue.setText(choice.getSelectedItem());
+			}
+		});
+
+		panel_AwtComponents.add(lblChoiceValue, gbc_lblChoiceValue);
+	}
+
+	/**
+	 * setListComponents
+	 * 
+	 */
+	private void setListComponents() {
+
+		int lineNum = 1;
+
+		// ----- 2nd Line / 4th Row -----
+		Label lblList = new Label("List");
+		GridBagConstraints gbc_lblList = new GridBagConstraints();
+		gbc_lblList.insets = new Insets(0, 0, 5, 5);
+		gbc_lblList.gridx = rowNum[3];
+		gbc_lblList.gridy = lineNum;
+		panel_AwtComponents.add(lblList, gbc_lblList);
+
+		// ----- 2nd Line / 5th Row -----
+		List list = new List();
+		list.add("a");
+		list.add("b");
+		list.add("c");
+		list.add("d");
+		list.add("e");
+
+		GridBagConstraints gbc_list = new GridBagConstraints();
+		gbc_list.insets = new Insets(0, 0, 5, 5);
+		gbc_list.gridx = rowNum[4];
+		gbc_list.gridy = lineNum;
+		gbc_list.fill = GridBagConstraints.BOTH;
+		panel_AwtComponents.add(list, gbc_list);
+
+		// ----- 2nd Line / 6th Row -----
+		Label lblListValue = new Label("");
+		GridBagConstraints gbc_lblListValue = new GridBagConstraints();
+		gbc_lblListValue.insets = new Insets(0, 0, 5, 0);
+		gbc_lblListValue.gridx = rowNum[5];
+		gbc_lblListValue.gridy = lineNum;
+
+		list.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				lblListValue.setText(list.getSelectedItem());
+			}
+		});
+
+		panel_AwtComponents.add(lblListValue, gbc_lblListValue);
+	}
+
+	/**
+	 * setTextFieldComponents
+	 * 
+	 */
+	private void setTextFieldComponents() {
+
+		int lineNum = 2;
+
+		// ----- 3rd Line / 1st Row -----
+		Label lblTextField = new Label("TextField");
+		GridBagConstraints gbc_lblTextField = new GridBagConstraints();
+		gbc_lblTextField.insets = new Insets(0, 0, 5, 5);
+		gbc_lblTextField.gridx = rowNum[0];
+		gbc_lblTextField.gridy = lineNum;
+		panel_AwtComponents.add(lblTextField, gbc_lblTextField);
+
+		// ----- 3rd Line / 2nd Row -----
+		TextField textField = new TextField();
+		GridBagConstraints gbc_textField = new GridBagConstraints();
+		gbc_textField.insets = new Insets(0, 0, 5, 5);
+		gbc_textField.gridx = rowNum[1];
+		gbc_textField.gridy = lineNum;
+		gbc_textField.fill = GridBagConstraints.BOTH;
+		panel_AwtComponents.add(textField, gbc_textField);
+
+		// ----- 3rd Line / 3rd Row -----
+		Label lblTextFieldValue = new Label("(empty)");
+		GridBagConstraints gbc_lblTextFieldValue = new GridBagConstraints();
+		gbc_lblTextFieldValue.insets = new Insets(0, 0, 5, 0);
+		gbc_lblTextFieldValue.gridx = rowNum[2];
+		gbc_lblTextFieldValue.gridy = lineNum;
+
+		textField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				lblTextFieldValue.setText(textField.getText());
+			}
+		});
+
+		panel_AwtComponents.add(lblTextFieldValue, gbc_lblTextFieldValue);
+	}
+
+	/**
+	 * setTextAreaComponents
+	 * 
+	 */
+	private void setTextAreaComponents() {
+
+		int lineNum = 2;
+
+		// ----- 3rd Line / 4th Row -----
+		Label lblTextArea = new Label("TextArea");
+		GridBagConstraints gbc_lblTextArea = new GridBagConstraints();
+		gbc_lblTextArea.insets = new Insets(0, 0, 0, 5);
+		gbc_lblTextArea.gridx = rowNum[3];
+		gbc_lblTextArea.gridy = lineNum;
+		panel_AwtComponents.add(lblTextArea, gbc_lblTextArea);
+
+		// ----- 3rd Line / 5th Row -----
+		TextArea textArea = new TextArea();
+		GridBagConstraints gbc_textArea = new GridBagConstraints();
+		gbc_textArea.insets = new Insets(0, 0, 0, 5);
+		gbc_textArea.gridx = rowNum[4];
+		gbc_textArea.gridy = lineNum;
+		gbc_textArea.fill = GridBagConstraints.BOTH;
+		panel_AwtComponents.add(textArea, gbc_textArea);
+
+		// ----- 3rd Line / 6th Row -----
+		Label lblTextAreaValue = new Label("(empty)");
+		GridBagConstraints gbc_lblTextAreaValue = new GridBagConstraints();
+		gbc_lblTextAreaValue.insets = new Insets(0, 0, 0, 5);
+		gbc_lblTextAreaValue.gridx = rowNum[5];
+		gbc_lblTextAreaValue.gridy = lineNum;
+
+		textArea.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				lblTextAreaValue.setText(textArea.getText());
+			}
+		});
+		
+		panel_AwtComponents.add(lblTextAreaValue, gbc_lblTextAreaValue);
+	}
+
+	/**
+	 * createAwtPanel
+	 * 
+	 */
+	private void createAwtPanel() {
+
+		// ======= Set Panel =======
 
 		panel_AwtComponents = new JPanel();
-		panel_AwtComponents.setBorder(
-				new TitledBorder(null, "AWT Components", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_AwtComponents.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+		GridBagLayout gbl_panel_AwtComponents = new GridBagLayout();
+		gbl_panel_AwtComponents.rowWeights = new double[] { 0.0, 0.0, 0.0 };
+		gbl_panel_AwtComponents.columnWeights = new double[] { 1.0, 1.0, 0.0, 0.5, 1.0, 1.0, 1.0, 0, 0.5 };
+		panel_AwtComponents.setLayout(gbl_panel_AwtComponents);
+
+		// ======= Prepare AWT Components =======
+
+		// ----- 1st line -----
+		setButtonComponents();
+		setCheckBoxComponents();
+
+		// ----- 2nd line -----
+
+		setChoiceComponents();
+		setListComponents();
+
+		// ----- 3rd line -----
+
+		setTextFieldComponents();
+		setTextAreaComponents();
+
+	}
+
+	/**
+	 * initialize
+	 * 
+	 */
+	private void initialize() {
+
+		// ======= Prepare Container =======
+
+		// ----- Set Container -----
+
+		con = this.getContentPane();
+		panel = new JPanel();
+		panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 
 		// ======= Place Panels onto container =======
 
-		panel.add(panel_SwingComponents);
-		panel.add(panel_AwtComponents);
-		scrollPane.setViewportView(panel);
-		con.add(scrollPane);
+		createSwingPanel();
+		createAwtPanel();
+		tabbedPane.addTab("Swing", panel_SwingComponents);
+		tabbedPane.addTab("AWT", panel_AwtComponents);
+		con.add(tabbedPane);
 
 		// ======= Window Setting =======
 
