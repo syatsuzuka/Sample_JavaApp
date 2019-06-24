@@ -525,12 +525,11 @@ public class Sample_OracleApp extends JFrame {
 		bar.setPreferredSize(new Dimension(0, 40));
 
 		GridBagConstraints gbc_table = new GridBagConstraints();
-		gbc_table.fill = GridBagConstraints.HORIZONTAL;
+		gbc_table.fill = GridBagConstraints.BOTH;
 		gbc_table.insets = new Insets(0, 0, 0, 5);
 		gbc_table.gridx = rowNum[1];
 		gbc_table.gridwidth = 6;
 		gbc_table.gridy = lineNum;
-		gbc_table.gridheight = 5;
 
 		panel_SwingComponents_1.add(sp, gbc_table);
 		
@@ -887,13 +886,14 @@ public class Sample_OracleApp extends JFrame {
 		
 		tabbedPane.addTab("AWT", panel_AwtComponents);
 		panel.add(lblHeader, BorderLayout.NORTH);
-		panel.add(tabbedPane, BorderLayout.SOUTH);
+		panel.add(tabbedPane, BorderLayout.CENTER);
 		con.add(panel);
 
 		// ======= Window Setting =======
 
 		this.setTitle(title);
-		this.setSize(1000, 800);
+		this.setSize(800, 500);
+		this.setResizable(false);
 		this.setVisible(true);
 
 	}
