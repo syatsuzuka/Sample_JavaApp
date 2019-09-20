@@ -16,8 +16,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -53,6 +51,7 @@ public class Sample_OracleApp extends JFrame {
 
 	// ======= Constants =======
 
+	private static final long serialVersionUID = 1L;
 	private String title = "Sample_OracleApp";
 	private String header = "GUI Components for Testing ver1.0";
 	private int[] rowNum = { 0, 1, 3, 5, 6, 8 };
@@ -63,9 +62,6 @@ public class Sample_OracleApp extends JFrame {
 
 	private Container con = null;
 	private JPanel panel = null;
-	private JTabbedPane tabbedPane = null;
-	private JScrollPane scrollPane = null;
-	private JPanel panel_SwingComponents = null;
 	private JPanel panel_SwingComponents_1;
 	private JPanel panel_AwtComponents = null;
 	private JTable table;
@@ -100,7 +96,7 @@ public class Sample_OracleApp extends JFrame {
 
 		// ----- 1st Line / 3rd Row -----
 
-		JLabel lbl_JButtonValue = new JLabel("0");
+		final JLabel lbl_JButtonValue = new JLabel("0");
 		GridBagConstraints gbc_lbl_JButtonValue = new GridBagConstraints();
 		gbc_lbl_JButtonValue.insets = new Insets(0, 0, 5, 5);
 		gbc_lbl_JButtonValue.gridx = rowNum[2];
@@ -164,7 +160,7 @@ public class Sample_OracleApp extends JFrame {
 
 		// ----- 2nd Line / 2nd Row -----
 
-		JCheckBox chckbxCheckBox = new JCheckBox("CheckBox");
+		final JCheckBox chckbxCheckBox = new JCheckBox("CheckBox");
 		GridBagConstraints gbc_chckbxCheckBox = new GridBagConstraints();
 		gbc_chckbxCheckBox.insets = new Insets(0, 0, 5, 5);
 		gbc_chckbxCheckBox.gridx = rowNum[1];
@@ -174,7 +170,7 @@ public class Sample_OracleApp extends JFrame {
 
 		// ----- 2nd Line / 3rd Row -----
 
-		JLabel lbl_JCheckBoxValue = new JLabel("False");
+		final JLabel lbl_JCheckBoxValue = new JLabel("False");
 		GridBagConstraints gbc_lbl_JCheckBoxValue = new GridBagConstraints();
 		gbc_lbl_JCheckBoxValue.insets = new Insets(0, 0, 5, 5);
 		gbc_lbl_JCheckBoxValue.gridx = rowNum[2];
@@ -208,7 +204,7 @@ public class Sample_OracleApp extends JFrame {
 		panel_SwingComponents_1.add(lbl_Jtogglebutton, gbc_lbl_Jtogglebutton);
 
 		// ----- 2nd Line / 5th Row -----
-		JToggleButton tglbtnJToggleButton = new JToggleButton("JToggleButton");
+		final JToggleButton tglbtnJToggleButton = new JToggleButton("JToggleButton");
 		GridBagConstraints gbc_tglbtnJToggleButton = new GridBagConstraints();
 		gbc_tglbtnJToggleButton.insets = new Insets(0, 0, 5, 5);
 		gbc_tglbtnJToggleButton.gridx = rowNum[4];
@@ -217,7 +213,7 @@ public class Sample_OracleApp extends JFrame {
 		panel_SwingComponents_1.add(tglbtnJToggleButton, gbc_tglbtnJToggleButton);
 
 		// ----- 2nd Line / 6th Row -----
-		JLabel lbl_JToggleButtonValue = new JLabel("false");
+		final JLabel lbl_JToggleButtonValue = new JLabel("false");
 		GridBagConstraints gbc_lbl_JToggleButtonValue = new GridBagConstraints();
 		gbc_lbl_JToggleButtonValue.insets = new Insets(0, 0, 5, 0);
 		gbc_lbl_JToggleButtonValue.gridx = rowNum[5];
@@ -254,7 +250,7 @@ public class Sample_OracleApp extends JFrame {
 
 		// ----- 3rd-5th Line / 2nd Row -----
 
-		JRadioButton rdbtnRadioButton_1 = new JRadioButton("JRadioButton#1");
+		final JRadioButton rdbtnRadioButton_1 = new JRadioButton("JRadioButton#1");
 		btnGroup.add(rdbtnRadioButton_1);
 		GridBagConstraints gbc_rdbtnRadioButton_1 = new GridBagConstraints();
 		gbc_rdbtnRadioButton_1.insets = new Insets(0, 0, 5, 5);
@@ -263,7 +259,7 @@ public class Sample_OracleApp extends JFrame {
 		gbc_rdbtnRadioButton_1.fill = GridBagConstraints.BOTH;
 		panel_SwingComponents_1.add(rdbtnRadioButton_1, gbc_rdbtnRadioButton_1);
 
-		JRadioButton rdbtnRadioButton_2 = new JRadioButton("JRadioButton#2");
+		final JRadioButton rdbtnRadioButton_2 = new JRadioButton("JRadioButton#2");
 		btnGroup.add(rdbtnRadioButton_2);
 		GridBagConstraints gbc_rdbtnRadioButton_2 = new GridBagConstraints();
 		gbc_rdbtnRadioButton_2.insets = new Insets(0, 0, 5, 5);
@@ -272,7 +268,7 @@ public class Sample_OracleApp extends JFrame {
 		gbc_rdbtnRadioButton_2.fill = GridBagConstraints.BOTH;
 		panel_SwingComponents_1.add(rdbtnRadioButton_2, gbc_rdbtnRadioButton_2);
 
-		JRadioButton rdbtnRadioButton_3 = new JRadioButton("JRadioButton#3");
+		final JRadioButton rdbtnRadioButton_3 = new JRadioButton("JRadioButton#3");
 		btnGroup.add(rdbtnRadioButton_3);
 		GridBagConstraints gbc_rdbtnRadioButton_3 = new GridBagConstraints();
 		gbc_rdbtnRadioButton_3.insets = new Insets(0, 0, 5, 5);
@@ -283,7 +279,7 @@ public class Sample_OracleApp extends JFrame {
 
 		// ----- 3rd-5th Line / 3rd Row -----
 
-		JLabel lbl_JRadioButtonValue_1 = new JLabel("");
+		final JLabel lbl_JRadioButtonValue_1 = new JLabel("");
 		GridBagConstraints gbc_lbl_JRadioButtonValue_1 = new GridBagConstraints();
 		gbc_lbl_JRadioButtonValue_1.insets = new Insets(0, 0, 5, 5);
 		gbc_lbl_JRadioButtonValue_1.gridx = rowNum[2];
@@ -297,7 +293,7 @@ public class Sample_OracleApp extends JFrame {
 			}
 		});
 
-		JLabel lbl_JRadioButtonValue_2 = new JLabel("");
+		final JLabel lbl_JRadioButtonValue_2 = new JLabel("");
 		GridBagConstraints gbc_lbl_JRadioButtonValue_2 = new GridBagConstraints();
 		gbc_lbl_JRadioButtonValue_2.insets = new Insets(0, 0, 5, 5);
 		gbc_lbl_JRadioButtonValue_2.gridx = rowNum[2];
@@ -311,7 +307,7 @@ public class Sample_OracleApp extends JFrame {
 			}
 		});
 
-		JLabel lbl_JRadioButtonValue_3 = new JLabel("");
+		final JLabel lbl_JRadioButtonValue_3 = new JLabel("");
 		GridBagConstraints gbc_lbl_JRadioButtonValue_3 = new GridBagConstraints();
 		gbc_lbl_JRadioButtonValue_3.insets = new Insets(0, 0, 5, 5);
 		gbc_lbl_JRadioButtonValue_3.gridx = rowNum[2];
@@ -393,7 +389,7 @@ public class Sample_OracleApp extends JFrame {
 
 		// ----- 5th Line / 4th Row -----
 
-		JLabel lblJSpinner = new JLabel("JSpinner");
+		final JLabel lblJSpinner = new JLabel("JSpinner");
 		GridBagConstraints gbc_lblJSpinner = new GridBagConstraints();
 		gbc_lblJSpinner.insets = new Insets(0, 0, 5, 5);
 		gbc_lblJSpinner.gridx = rowNum[3];
@@ -401,7 +397,7 @@ public class Sample_OracleApp extends JFrame {
 		panel_SwingComponents_1.add(lblJSpinner, gbc_lblJSpinner);
 
 		// ----- 5th Line / 5th Row -----
-		JSpinner spinner = new JSpinner();
+		final JSpinner spinner = new JSpinner();
 		GridBagConstraints gbc_spinner = new GridBagConstraints();
 		gbc_spinner.insets = new Insets(0, 0, 5, 5);
 		gbc_spinner.gridx = rowNum[4];
@@ -410,7 +406,7 @@ public class Sample_OracleApp extends JFrame {
 		panel_SwingComponents_1.add(spinner, gbc_spinner);
 
 		// ----- 5th Line / 6th Row -----
-		JLabel lblJSpinnerValue = new JLabel("0");
+		final JLabel lblJSpinnerValue = new JLabel("0");
 		GridBagConstraints gbc_lblJSpinnerValue = new GridBagConstraints();
 		gbc_lblJSpinnerValue.insets = new Insets(0, 0, 5, 0);
 		gbc_lblJSpinnerValue.gridx = rowNum[5];
@@ -473,7 +469,7 @@ public class Sample_OracleApp extends JFrame {
 		panel_SwingComponents_1.add(lblJList, gbc_lblJList);
 
 		// ----- 6th Line / 5th Row -----
-		JList list = new JList(options);
+		final JList<String> list = new JList<String>(options);
 		GridBagConstraints gbc_list = new GridBagConstraints();
 		gbc_list.insets = new Insets(0, 0, 5, 5);
 		gbc_list.fill = GridBagConstraints.BOTH;
@@ -482,7 +478,7 @@ public class Sample_OracleApp extends JFrame {
 		panel_SwingComponents_1.add(list, gbc_list);
 
 		// ----- 6th Line / 6th Row -----
-		JLabel lblJListValue = new JLabel("");
+		final JLabel lblJListValue = new JLabel("");
 		GridBagConstraints gbc_lblJListValue = new GridBagConstraints();
 		gbc_lblJListValue.insets = new Insets(0, 0, 5, 0);
 		gbc_lblJListValue.gridx = rowNum[5];
@@ -535,7 +531,7 @@ public class Sample_OracleApp extends JFrame {
 		
 		// ----- 7th Line / 3rd Row -----
 		
-		JLabel lblJTableValue = new JLabel("");
+		final JLabel lblJTableValue = new JLabel("");
 		GridBagConstraints gbc_lblJTableValue = new GridBagConstraints();
 		gbc_lblJTableValue.insets = new Insets(0, 0, 5, 0);
 		gbc_lblJTableValue.gridx = rowNum[5];
@@ -618,7 +614,7 @@ public class Sample_OracleApp extends JFrame {
 		panel_AwtComponents.add(button, gbc_button);
 
 		// ----- 1st Line / 3rd Row -----
-		Label lblButtonValue = new Label("0");
+		final Label lblButtonValue = new Label("0");
 		GridBagConstraints gbc_lblButtonValue = new GridBagConstraints();
 		gbc_lblButtonValue.insets = new Insets(0, 0, 5, 5);
 		gbc_lblButtonValue.gridx = rowNum[2];
@@ -653,7 +649,7 @@ public class Sample_OracleApp extends JFrame {
 		panel_AwtComponents.add(lblCheckBox, gbc_lblCheckBox);
 
 		// ----- 1st Line / 2nd Row -----
-		Checkbox checkbox = new Checkbox("CheckBox");
+		final Checkbox checkbox = new Checkbox("CheckBox");
 		GridBagConstraints gbc_checkbox = new GridBagConstraints();
 		gbc_checkbox.insets = new Insets(0, 0, 5, 5);
 		gbc_checkbox.gridx = rowNum[4];
@@ -662,7 +658,7 @@ public class Sample_OracleApp extends JFrame {
 		panel_AwtComponents.add(checkbox, gbc_checkbox);
 
 		// ----- 1st Line / 3rd Row -----
-		Label lblCheckBoxValue = new Label("false");
+		final Label lblCheckBoxValue = new Label("false");
 		GridBagConstraints gbc_lblCheckBoxValue = new GridBagConstraints();
 		gbc_lblCheckBoxValue.insets = new Insets(0, 0, 5, 0);
 		gbc_lblCheckBoxValue.gridx = rowNum[5];
@@ -695,7 +691,7 @@ public class Sample_OracleApp extends JFrame {
 		panel_AwtComponents.add(lblChoice, gbc_lblChoice);
 
 		// ----- 2nd Line / 2nd Row -----
-		Choice choice = new Choice();
+		final Choice choice = new Choice();
 		choice.addItem("a");
 		choice.addItem("b");
 		choice.addItem("c");
@@ -710,7 +706,7 @@ public class Sample_OracleApp extends JFrame {
 		panel_AwtComponents.add(choice, gbc_choice);
 
 		// ----- 2nd Line / 3rd Row -----
-		Label lblChoiceValue = new Label("");
+		final Label lblChoiceValue = new Label("");
 		GridBagConstraints gbc_lblChoiceValue = new GridBagConstraints();
 		gbc_lblChoiceValue.insets = new Insets(0, 0, 5, 5);
 		gbc_lblChoiceValue.gridx = rowNum[2];
@@ -770,7 +766,7 @@ public class Sample_OracleApp extends JFrame {
 		panel_AwtComponents.add(lblList, gbc_lblList);
 
 		// ----- 3rd Line / 2nd Row -----
-		List list = new List();
+		final List list = new List();
 		list.add("a");
 		list.add("b");
 		list.add("c");
@@ -785,7 +781,7 @@ public class Sample_OracleApp extends JFrame {
 		panel_AwtComponents.add(list, gbc_list);
 
 		// ----- 3rd Line / 3rd Row -----
-		Label lblListValue = new Label("");
+		final Label lblListValue = new Label("");
 		GridBagConstraints gbc_lblListValue = new GridBagConstraints();
 		gbc_lblListValue.insets = new Insets(0, 0, 5, 0);
 		gbc_lblListValue.gridx = rowNum[2];
@@ -914,9 +910,8 @@ public class Sample_OracleApp extends JFrame {
 	 * 
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
-		Sample_OracleApp myApp = new Sample_OracleApp();
+		new Sample_OracleApp();
 
 	}
 
